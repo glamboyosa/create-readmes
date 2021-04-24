@@ -4,7 +4,7 @@
 
 ## Motivation
 
-Dev Exp. example repos @ [**tru.ID**]("https://tru.id) tend to have a somewhat consistent `README` file so I felt it necessary to automate the boilerplate away
+Dev Exp. example repos @ [**tru.ID**](https://tru.id) tend to have a somewhat consistent `README` file so I felt it necessary to automate the boilerplate away
 
 ## Tools
 
