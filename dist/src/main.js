@@ -16,7 +16,6 @@ exports.createProject = void 0;
 const chalk_1 = __importDefault(require("chalk"));
 const fs_1 = __importDefault(require("fs"));
 const ncp_1 = __importDefault(require("ncp"));
-const path_1 = __importDefault(require("path"));
 const util_1 = require("util");
 const access = util_1.promisify(fs_1.default.access);
 const copy = util_1.promisify(ncp_1.default);
@@ -30,13 +29,18 @@ function copyTemplateFiles(options) {
 function createProject(options) {
     return __awaiter(this, void 0, void 0, function* () {
         options = Object.assign(Object.assign({}, options), { targetDirectory: process.cwd() });
-        const currentFileUrl = __dirname;
-        console.log('current file URL Is:', currentFileUrl);
-        console.log(new URL(currentFileUrl).pathname);
-        const templateDir = path_1.default.resolve(new URL(currentFileUrl).pathname, '../../templates', options.template);
-        options.templateDirectory = templateDir;
+        options.templateDirectory = (process.cwd() +
+            `${'/'}` +
+            'templates' +
+            '/' +
+            options.template).replace(/\//g, '\\');
+        console.log((process.cwd() +
+            `${'/'}` +
+            'templates' +
+            '/' +
+            options.template).replace(/\//g, '\\'));
         try {
-            yield access(templateDir, fs_1.default.constants.R_OK);
+            yield access(options.templateDirectory, fs_1.default.constants.R_OK);
         }
         catch (err) {
             console.error('%s Invalid template name', chalk_1.default.red.bold('ERROR'));

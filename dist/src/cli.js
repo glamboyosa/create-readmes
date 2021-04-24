@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cli = void 0;
 const inquirer_1 = __importDefault(require("inquirer"));
+const main_1 = require("./main");
 const promptForOptions = () => __awaiter(void 0, void 0, void 0, function* () {
     const questions = [
         {
@@ -33,7 +34,7 @@ function cli(args) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(args);
         const usersOptions = yield promptForOptions();
-        console.log(usersOptions);
+        yield main_1.createProject(usersOptions);
     });
 }
 exports.cli = cli;

@@ -1,5 +1,6 @@
 // CLI Code lives here
 import inquirer from 'inquirer';
+import { createProject } from './main';
 const promptForOptions = async () => {
   const questions = [
     {
@@ -19,5 +20,5 @@ const promptForOptions = async () => {
 export async function cli(args: string[]) {
   console.log(args);
   const usersOptions = await promptForOptions();
-  console.log(usersOptions);
+  await createProject(usersOptions);
 }
