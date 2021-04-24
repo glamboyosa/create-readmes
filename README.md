@@ -28,7 +28,10 @@ npm install
 ```
 
 Start the project via:
-`cd dist && npm link`
+
+```
+cd dist && npm link
+```
 
 Finally, run the command:
 
