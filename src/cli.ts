@@ -18,7 +18,7 @@ const promptForOptions = async () => {
   };
 };
 export async function cli(args: string[]) {
-  console.log(args);
+  args;
   const usersOptions = await promptForOptions();
   await createProject(usersOptions);
 }

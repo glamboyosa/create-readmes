@@ -25,7 +25,6 @@ export async function createProject(options: IOptions) {
   if (__dirname.includes('dist')) {
     rootDirectory = __dirname.split('dist')[0];
 
-    console.log('thus proves we run from within .js context');
   }
 
   options.templateDirectory = (

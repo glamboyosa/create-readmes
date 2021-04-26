@@ -1,6 +1,6 @@
 {
   "name": "@glamboyosa/create-readmes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI that adds template READMEs to tru.ID devx example GitHub projects",
   "main": "dist/src/index.js",
   "bin": {

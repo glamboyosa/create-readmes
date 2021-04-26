@@ -32,7 +32,6 @@ function createProject(options) {
         let rootDirectory;
         if (__dirname.includes('dist')) {
             rootDirectory = __dirname.split('dist')[0];
-            console.log('thus proves we run from within .js context');
         }
         options.templateDirectory = (rootDirectory +
             `${'/'}` +

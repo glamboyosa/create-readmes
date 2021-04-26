@@ -32,7 +32,7 @@ const promptForOptions = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 function cli(args) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(args);
+        args;
         const usersOptions = yield promptForOptions();
         yield main_1.createProject(usersOptions);
     });
