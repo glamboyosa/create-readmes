@@ -17,6 +17,7 @@ const chalk_1 = __importDefault(require("chalk"));
 const fs_1 = __importDefault(require("fs"));
 const ncp_1 = __importDefault(require("ncp"));
 const util_1 = require("util");
+const path_1 = __importDefault(require("path"));
 const access = util_1.promisify(fs_1.default.access);
 const copy = util_1.promisify(ncp_1.default);
 function copyTemplateFiles(options) {
@@ -33,8 +34,8 @@ function createProject(options) {
         if (__dirname.includes('dist')) {
             rootDirectory = __dirname.split('dist')[0];
         }
-        options.templateDirectory = (rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\');
-        console.log((rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\'));
+        options.templateDirectory = path_1.default.join((rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\'));
+        console.log(path_1.default.join(options.templateDirectory));
         try {
             yield access(options.templateDirectory, fs_1.default.constants.R_OK);
         }

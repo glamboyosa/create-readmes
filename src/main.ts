@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import fs from 'fs';
 import ncp from 'ncp';
 import { promisify } from 'util';
+import path from 'path';
 interface IOptions {
   template: string;
   templateDirectory?: string;
@@ -24,14 +25,13 @@ export async function createProject(options: IOptions) {
   let rootDirectory: string;
   if (__dirname.includes('dist')) {
     rootDirectory = __dirname.split('dist')[0];
-
   }
 
-  options.templateDirectory =  (rootDirectory! + 'templates' + '/' + options.template).replace(/\//g, '\\');
-
-  console.log(
+  options.templateDirectory = path.join(
     (rootDirectory! + 'templates' + '/' + options.template).replace(/\//g, '\\')
   );
+  console.log(path.join(options.templateDirectory));
+
   try {
     await access(options.templateDirectory, fs.constants.R_OK);
   } catch (err) {
