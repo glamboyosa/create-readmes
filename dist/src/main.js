@@ -29,16 +29,17 @@ function copyTemplateFiles(options) {
 function createProject(options) {
     return __awaiter(this, void 0, void 0, function* () {
         options = Object.assign(Object.assign({}, options), { targetDirectory: process.cwd() });
-        options.templateDirectory = (process.cwd() +
+        let rootDirectory;
+        if (__dirname.includes('dist')) {
+            rootDirectory = __dirname.split('dist')[0];
+            console.log('thus proves we run from within .js context');
+        }
+        options.templateDirectory = (rootDirectory +
             `${'/'}` +
             'templates' +
             '/' +
             options.template).replace(/\//g, '\\');
-        console.log((process.cwd() +
-            `${'/'}` +
-            'templates' +
-            '/' +
-            options.template).replace(/\//g, '\\'));
+        console.log((rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\'));
         try {
             yield access(options.templateDirectory, fs_1.default.constants.R_OK);
         }
@@ -46,9 +47,9 @@ function createProject(options) {
             console.error('%s Invalid template name', chalk_1.default.red.bold('ERROR'));
             process.exit(1);
         }
-        console.log('Copy project files');
+        console.log('Copying README file');
         yield copyTemplateFiles(options);
-        console.log('%s Project ready', chalk_1.default.green.bold('DONE'));
+        console.log('%s template ready', chalk_1.default.green.bold('DONE'));
         return true;
     });
 }

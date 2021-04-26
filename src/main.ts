@@ -21,22 +21,24 @@ export async function createProject(options: IOptions) {
     ...options,
     targetDirectory: process.cwd(),
   };
+  let rootDirectory: string;
+  if (__dirname.includes('dist')) {
+    rootDirectory = __dirname.split('dist')[0];
+
+    console.log('thus proves we run from within .js context');
+  }
 
   options.templateDirectory = (
-    process.cwd() +
+    rootDirectory! +
     `${'/'}` +
     'templates' +
     '/' +
     options.template
   ).replace(/\//g, '\\');
 
-  console.log((
-    process.cwd() +
-    `${'/'}` +
-    'templates' +
-    '/' +
-    options.template
-  ).replace(/\//g, '\\'))
+  console.log(
+    (rootDirectory! + 'templates' + '/' + options.template).replace(/\//g, '\\')
+  );
   try {
     await access(options.templateDirectory, fs.constants.R_OK);
   } catch (err) {
@@ -44,9 +46,9 @@ export async function createProject(options: IOptions) {
     process.exit(1);
   }
 
-  console.log('Copy project files');
+  console.log('Copying README file');
   await copyTemplateFiles(options);
 
-  console.log('%s Project ready', chalk.green.bold('DONE'));
+  console.log('%s template ready', chalk.green.bold('DONE'));
   return true;
 }

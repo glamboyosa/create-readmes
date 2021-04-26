@@ -1,4 +1,4 @@
-# Adding SIM Swap Detection to your React Native Firebase Apps with Firebase Auth & tru.ID SIMCheck
+# Tutorial Title
 
 ## Requirements
 
