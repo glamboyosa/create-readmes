@@ -27,13 +27,7 @@ export async function createProject(options: IOptions) {
 
   }
 
-  options.templateDirectory = (
-    rootDirectory! +
-    `${'/'}` +
-    'templates' +
-    '/' +
-    options.template
-  ).replace(/\//g, '\\');
+  options.templateDirectory =  (rootDirectory! + 'templates' + '/' + options.template).replace(/\//g, '\\');
 
   console.log(
     (rootDirectory! + 'templates' + '/' + options.template).replace(/\//g, '\\')

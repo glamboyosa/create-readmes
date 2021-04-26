@@ -33,11 +33,7 @@ function createProject(options) {
         if (__dirname.includes('dist')) {
             rootDirectory = __dirname.split('dist')[0];
         }
-        options.templateDirectory = (rootDirectory +
-            `${'/'}` +
-            'templates' +
-            '/' +
-            options.template).replace(/\//g, '\\');
+        options.templateDirectory = (rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\');
         console.log((rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\'));
         try {
             yield access(options.templateDirectory, fs_1.default.constants.R_OK);
