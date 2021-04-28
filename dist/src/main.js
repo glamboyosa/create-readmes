@@ -18,6 +18,7 @@ const fs_1 = __importDefault(require("fs"));
 const ncp_1 = __importDefault(require("ncp"));
 const util_1 = require("util");
 const path_1 = __importDefault(require("path"));
+const os_1 = __importDefault(require("os"));
 const access = util_1.promisify(fs_1.default.access);
 const copy = util_1.promisify(ncp_1.default);
 function copyTemplateFiles(options) {
@@ -34,8 +35,13 @@ function createProject(options) {
         if (__dirname.includes('dist')) {
             rootDirectory = __dirname.split('dist')[0];
         }
-        options.templateDirectory = path_1.default.join((rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\'));
-        console.log(path_1.default.join(options.templateDirectory));
+        if (os_1.default.platform() === 'win32') {
+            options.templateDirectory = path_1.default.join((rootDirectory + 'templates' + '/' + options.template).replace(/\//g, '\\'));
+        }
+        else {
+            options.templateDirectory =
+                rootDirectory + 'templates' + '/' + options.template;
+        }
         try {
             yield access(options.templateDirectory, fs_1.default.constants.R_OK);
         }
